@@ -173,7 +173,7 @@ restore()
 
 function usage()
 {
-    head -35 $0 | grep -v '#!/'
+    head -45 $0 | grep -v '#!/'
     echo "\tUsage:"
     echo "\t./$0 --setup"
     echo "\tor"
@@ -211,7 +211,3 @@ done
 
 usage
 exit 1
-#Check a crypted file in .git database like this
-#git ls-tree HEAD
-#git cat-file -p "TheBlobObjectSHA" | openssl enc -d -base64 -aes-256-ecb -k "password" > your_secret_file_will_be_visable_now
-
