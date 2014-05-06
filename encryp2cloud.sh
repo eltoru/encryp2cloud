@@ -11,11 +11,23 @@
 # Possabilities/limits: Several encryp2cloud backups can be created, however encryp2cloud can only have one and same password/decryption for 
 #                       all encryp2cloud backups as it is stored globaly for git and not localy 
 #
-# Solution: Git, git-encrypt and openssl are the fundamental technich used by this program.
+# Solution: Git, git-encrypt and openssl are the fundamental techniches used .
 #
 # Discalimer: Use it on your own risk. The Author will not take any responsability in any trouble situation regarding usage of this program.
 #
 # Usage: Use it as in disclaimer but you are free to share the program to others.
+#
+# Short Overview: 
+#             A                          B                                   C
+#     .--------------------.       .----------------------.           .----------------------.
+#     |directory to backup |  -->  | google_drive (local) |   --->    | google_drive (cloud) | 
+#     | pictures etc..     |       | .git db stored here  |           | .git database        |
+#     | readable files     |       | encrypted files here |           | files encrypted      |
+#     | .git link here     |       |                      |           |                      |
+#     .--------------------.       .----------------------.           .----------------------.
+# 
+#  If you place 'A' (directory to be backed up) at OTHER physical disc than 'B' (Google Drive sync folder) location
+#  you will have two levels of backups. 
 #  
 # Reference:  git-encrypt (git clone https://github.com/shadowhand/git-encrypt)
 #
@@ -23,6 +35,12 @@
 #
 # Verified for: Mac OS
 #
+# Verify decryption: 
+# 
+# Check a file in .git database like this
+# git ls-tree HEAD
+# git cat-file -p "TheBlobObjectSHA" | openssl enc -d -base64 -aes-256-ecb -k "password" > your_secret_file_will_be_visable_now
+
 
 
 cwd=`pwd`
@@ -155,12 +173,12 @@ restore()
 
 function usage()
 {
-    head -25 $0 | grep -v '#!/'
-    echo "Usage:"
-    echo "./$0"
+    head -35 $0 | grep -v '#!/'
+    echo "\tUsage:"
+    echo "\t./$0 --setup"
+    echo "\tor"
+    echo "\t./$0 --restore=/path/to/important_keys.encryp2cloud"
     echo "\t-h --help"
-    echo "\t--setup"
-    echo "\t--restore=/path/to/important_keys.encryp2cloud"
     echo ""
 }
 
