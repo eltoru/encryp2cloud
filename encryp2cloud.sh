@@ -3,8 +3,8 @@
 # Author: Tobias Rundgren
 # Date: 2014-05-02
 #
-# Purpose:  Use this program to setup a crypted backup storage on an external storage location, such as google drive, drop box etc.
-#           As each file becomes crypted it is fast and easy to add new files to backup and to restore them localy.
+# Purpose:  Use this program to setup an encrypted backup storage on an external storage location, such as google drive, drop box etc.
+#           As each file becomes encrypted it is fast and easy to add new files to backup and to restore them localy.
 #
 # Prerequsites: A user with tiny git knowledge (http://git-scm.com)
 #
