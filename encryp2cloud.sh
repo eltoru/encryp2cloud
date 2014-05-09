@@ -67,12 +67,13 @@ install_git_crypt()
     git clone https://github.com/shadowhand/git-encrypt || cp `dirname $0`/git-encrypt . || (echo "Error: can not find git-encrypt package to install.."; exit 1)
     git_bin_exec=`which git`
     git_bin=`dirname ${git_bin_exec}` 
-    sudo rm -f  ${git_bin}/../git-encrypt
-    sudo mv git-encrypt ${git_bin}/../.
+    which sudo && SUDO=sudo || SUDO=""
+    $SUDO rm -f  ${git_bin}/git-encrypt
+    $SUDO cp -r git-encrypt ${git_bin}/.
     cd ${git_bin}
-    sudo rm -f gitcrypt
-    sudo ln -s ${git_bin}/../git-encrypt/gitcrypt gitcrypt
-    sudo chmod 0755 ${git_bin}/../git-encrypt/gitcrypt
+    $SUDO rm -f gitcrypt
+    $SUDO ln -s ${git_bin}/git-encrypt/gitcrypt gitcrypt
+    $SUDO chmod 0755 ${git_bin}/git-encrypt/gitcrypt
     cd $cwd
     rm -rf $tmp
 }
@@ -116,7 +117,7 @@ setup()
 
     #Before use gitcrypt make sure to store SALT and PASS outside backup folder before proceed.
     cat `which gitcrypt` | sed -e 's#git config gitcrypt.#git config --global gitcrypt.#g' > ./gitcrypt.tmp$$
-    sudo cp ./gitcrypt.tmp$$ `which gitcrypt`
+    $SUDO cp ./gitcrypt.tmp$$ `which gitcrypt`
     rm -f ./gitcrypt.tmp$$
 
     gitcrypt init
