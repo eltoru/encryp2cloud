@@ -25,4 +25,4 @@ Store files encrypted in a cloud like google drive for backup
 
  Verified for: Mac OS (Should work on linux)
 
- Tags: crypt encrypt file delta cloud storage sync git based cloud backup  
+ Tags: crypt encrypt files directories diff delta cloud storage sync git based cloud backup  
